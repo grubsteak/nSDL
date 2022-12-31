@@ -4,7 +4,9 @@ RANLIB = arm-none-eabi-ranlib
 STRIP = arm-none-eabi-strip
 
 INCLUDE = -I include
-CFLAGS = -Wall -Wextra -Ofast -Wno-unused-parameter
+CFLAGS = -g -Wall -Wextra -Ofast -Wno-unused-parameter -Wno-implicit-fallthrough
+
+NDLESS_HOME = $(shell dirname `which $(CC)`)/..
 
 TARGET = libSDL.a
 CONFIG_H = include/SDL_config.h
@@ -66,10 +68,15 @@ $(TARGET): $(OBJECTS)
 	cp $(CONFIG_H).default $(CONFIG_H)
 	$(AR) cr $@ $^
 	$(RANLIB) $@
-	$(STRIP) --strip-unneeded $@
+	# $(STRIP) --strip-unneeded $@
 
 .c.o:
 	$(CC) $(INCLUDE) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJECTS) $(TARGET)
+
+install: $(TARGET)
+	cp $< $(NDLESS_HOME)/lib
+
+.PHONY: clean install all
