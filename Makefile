@@ -1,15 +1,5 @@
-CC = nspire-gcc
-AR = arm-none-eabi-ar
-RANLIB = arm-none-eabi-ranlib
-STRIP = arm-none-eabi-strip
-
-INCLUDE = -I include
-CFLAGS = -g -Wall -Wextra -Ofast -Wno-unused-parameter -Wno-implicit-fallthrough
-
-NDLESS_HOME = $(shell dirname `which $(CC)`)/..
 
 TARGET = libSDL.a
-CONFIG_H = include/SDL_config.h
 SOURCES = \
 	src/SDL.c \
 	src/SDL_error.c \
@@ -60,23 +50,28 @@ SOURCES = \
 	src/video/tinspire/SDL_tinspirenti.c \
 	src/video/tinspire/SDL_tinspireutils.c \
 	src/video/tinspire/SDL_tinspirevideo.c
-OBJECTS = $(SOURCES:.c=.o)
 
-all: $(TARGET)
+SDL_GFX = lib/SDL_gfx/SDL_gfx.a
+SDL_GFX_DIR = $(dirname SDL_GFX)
+SDL_IMAGE = lib/SDL_image/SDL_image.a
+SDL_IMAGE_DIR = $(dirname SDL_IMAGE)
 
-$(TARGET): $(OBJECTS)
-	cp $(CONFIG_H).default $(CONFIG_H)
-	$(AR) cr $@ $^
-	$(RANLIB) $@
-	# $(STRIP) --strip-unneeded $@
+TARGETS = $(TARGET) $(SDL_GFX) $(SDL_IMAGE)
 
-.c.o:
-	$(CC) $(INCLUDE) $(CFLAGS) -c $< -o $@
+include common.mk
+
+
+
+$(SDL_GFX): $(SDL_GFX_DIR)/*.c $(SDL_GFX_DIR)/*.h
+	cd $(SDL_GFX_DIR); make $@; cd -;
+
+$(SDL_IMAGE): $(SDL_IMAGE_DIR)/*.c $(SDL_IMAGE_DIR)/*.h
+	cd $(SDL_IMAGE_DIR); make $@; cd -;
 
 clean:
 	rm -f $(OBJECTS) $(TARGET)
+	cd $(SDL_GFX_DIR); make clean; cd -
+	cd $(SDL_IMAGE_DIR); make clean; cd -
 
-install: $(TARGET)
-	cp $< $(NDLESS_HOME)/lib
-
-.PHONY: clean install all
+install:
+	cp $^ $(NDLESS_HOME)/lib
