@@ -18,3 +18,5 @@ SOURCES = \
 	IMG_xcf.c \
 	IMG_xpm.c \
 	IMG_xv.c
+
+include $(BASE)/common.mk

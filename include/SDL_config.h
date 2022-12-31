@@ -25,7 +25,7 @@
 
 #include "SDL_platform.h"
 
-#define __TINSPIRE__
+#define __TINSPIRE__ 1
 #include "SDL_config_tinspire.h"
 
 

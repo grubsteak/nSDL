@@ -51,10 +51,10 @@ SOURCES = \
 	src/video/tinspire/SDL_tinspireutils.c \
 	src/video/tinspire/SDL_tinspirevideo.c
 
-SDL_GFX = lib/SDL_gfx/SDL_gfx.a
-SDL_GFX_DIR = $(dirname SDL_GFX)
-SDL_IMAGE = lib/SDL_image/SDL_image.a
-SDL_IMAGE_DIR = $(dirname SDL_IMAGE)
+SDL_GFX = ./libs/SDL_gfx/libSDL_gfx.a
+SDL_GFX_DIR = $(shell dirname $(SDL_GFX))
+SDL_IMAGE = ./libs/SDL_image/libSDL_image.a
+SDL_IMAGE_DIR = $(shell dirname $(SDL_IMAGE))
 
 TARGETS = $(TARGET) $(SDL_GFX) $(SDL_IMAGE)
 
@@ -62,16 +62,21 @@ include common.mk
 
 
 
-$(SDL_GFX): $(SDL_GFX_DIR)/*.c $(SDL_GFX_DIR)/*.h
-	cd $(SDL_GFX_DIR); make $@; cd -;
+$(SDL_GFX): $(SDL_GFX_DIR)
+	cd $(SDL_GFX_DIR); make $(shell basename $@)
 
-$(SDL_IMAGE): $(SDL_IMAGE_DIR)/*.c $(SDL_IMAGE_DIR)/*.h
-	cd $(SDL_IMAGE_DIR); make $@; cd -;
+$(SDL_IMAGE):
+	cd $(SDL_IMAGE_DIR); make $(shell basename $@)
 
 clean:
 	rm -f $(OBJECTS) $(TARGET)
 	cd $(SDL_GFX_DIR); make clean; cd -
 	cd $(SDL_IMAGE_DIR); make clean; cd -
 
-install:
+install: $(TARGETS)
 	cp $^ $(NDLESS_HOME)/lib
+	mkdir -p $(NDLESS_HOME)/include/SDL
+	cp -r include $(SDL_GFX_DIR)/*.h $(SDL_IMAGE_DIR)/*.h $(NDLESS_HOME)/include/SDL
+
+
+.PHONY: $(SDL_GFX) $(SDL_IMAGE) install
