@@ -218,31 +218,32 @@ void NSP_InitOSKeymap(_THIS)
 	sdlk_keymap[NSP_KEY_SHIFT] =	SDLK_LSHIFT;
 	sdlk_keymap[NSP_KEY_CTRL] =	SDLK_LCTRL;
 	sdlk_keymap[NSP_KEY_BAR] =	SDLK_UNKNOWN;
-	sdlk_keymap[NSP_KEY_VAR] =	SDLK_UNKNOWN;
-	sdlk_keymap[NSP_KEY_DOC] =	SDLK_UNKNOWN;
-	sdlk_keymap[NSP_KEY_TRIG] =	SDLK_UNKNOWN;
-	sdlk_keymap[NSP_KEY_THETA] =	SDLK_UNKNOWN;
-	sdlk_keymap[NSP_KEY_LTHAN] =	SDLK_LESS;
-	sdlk_keymap[NSP_KEY_FLAG] =	SDLK_UNKNOWN;
+	sdlk_keymap[NSP_KEY_VAR] =	SDLK_LALT;
+	sdlk_keymap[NSP_KEY_DOC] =	SDLK_QUESTION; // Colon
+	sdlk_keymap[NSP_KEY_TRIG] =	  SDLK_UNDERSCORE; // Underscore
+	sdlk_keymap[NSP_KEY_THETA] =	SDLK_UNKNOWN;  // Not on CX
+	sdlk_keymap[NSP_KEY_LTHAN] =	SDLK_LESS;  // Not on CX
+	sdlk_keymap[NSP_KEY_FLAG] =	SDLK_QUOTE; // Quote
 	sdlk_keymap[NSP_KEY_CLICK] =	SDLK_KP_ENTER;
 	sdlk_keymap[NSP_KEY_HOME] = 	SDLK_HOME;
 	sdlk_keymap[NSP_KEY_MENU] =	SDLK_MENU;
-	sdlk_keymap[NSP_KEY_TAN] =	SDLK_UNKNOWN;
-	sdlk_keymap[NSP_KEY_COS] =	SDLK_UNKNOWN;
-	sdlk_keymap[NSP_KEY_SIN] =	SDLK_UNKNOWN;
+	sdlk_keymap[NSP_KEY_TAN] =	SDLK_UNKNOWN; // Not on CX
+	sdlk_keymap[NSP_KEY_COS] =	SDLK_UNKNOWN; // Not on CX
+	sdlk_keymap[NSP_KEY_SIN] =	SDLK_UNKNOWN; // Not on CX
 	sdlk_keymap[NSP_KEY_EXP] =	SDLK_CARET;
 	sdlk_keymap[NSP_KEY_GTHAN] =	SDLK_GREATER;
-	sdlk_keymap[NSP_KEY_SQU] =	SDLK_UNKNOWN;
-	sdlk_keymap[NSP_KEY_TENX]=	SDLK_UNKNOWN;
-	sdlk_keymap[NSP_KEY_EE] =	SDLK_UNKNOWN;
-	sdlk_keymap[NSP_KEY_II] =	SDLK_UNKNOWN;
-	sdlk_keymap[NSP_KEY_eEXP] =	SDLK_UNKNOWN;
-	sdlk_keymap[NSP_KEY_PI] =	SDLK_UNKNOWN;
+	sdlk_keymap[NSP_KEY_SQU] =	SDLK_BACKSLASH; // Backslash
+	sdlk_keymap[NSP_KEY_TENX]=	SDLK_GREATER;
+	sdlk_keymap[NSP_KEY_EE] =	SDLK_LEFTBRACKET;
+	sdlk_keymap[NSP_KEY_II] =	SDLK_RIGHTBRACKET;
+	sdlk_keymap[NSP_KEY_eEXP] =	SDLK_LESS;
+	sdlk_keymap[NSP_KEY_PI] =	SDLK_AT;
 	sdlk_keymap[NSP_KEY_QUES] =	SDLK_QUESTION;
-	sdlk_keymap[NSP_KEY_QUESEXCL] =	SDLK_UNKNOWN;
-	sdlk_keymap[NSP_KEY_CAT] =	SDLK_UNKNOWN;
-	sdlk_keymap[NSP_KEY_FRAC] =	SDLK_UNKNOWN;
-	sdlk_keymap[NSP_KEY_SCRATCHPAD] = SDLK_UNKNOWN;
+	sdlk_keymap[NSP_KEY_QUESEXCL] =	SDLK_SEMICOLON; // Semicolon
+	sdlk_keymap[NSP_KEY_CAT] =	SDLK_BACKQUOTE; // Backquote
+	sdlk_keymap[NSP_KEY_FRAC] =	SDLK_UNDERSCORE; // Not on CX?
+	sdlk_keymap[NSP_KEY_SCRATCHPAD] = SDLK_COLON;
+
 }
 
 /* end of SDL_tinspireevents.c ... */
