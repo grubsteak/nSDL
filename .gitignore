@@ -1,1 +1,4 @@
 *.o
+libSDL.a
+libs/SDL_gfx/libSDL_gfx.a
+libs/SDL_image/libSDL_image.a
